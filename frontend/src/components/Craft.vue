@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <li :class="craft.owner ? 'owned' : 'for-sale'">
+  <li :class="craft.owner ? 'owned' : 'forSale'">
     <p>
       {{ craft.name }}
       <span v-if="craft.owner">
@@ -32,7 +32,7 @@ defineProps({
   .owned {
     background-color: rgba(20, 20, 20, 0.3);
   }
-  .for-sale {
+  .forSale {
     font-weight: 800;
   }
 
