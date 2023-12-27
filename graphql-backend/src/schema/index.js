@@ -31,14 +31,14 @@ type Query {
 }
 
 type Mutation {
-  addCraft(  
+  addCraft(
     name: String
     type: String
     brand: String
     price: String
     age: Int
   ): CraftId
-  
+
   updateCraft(
     name: String
     type: String
