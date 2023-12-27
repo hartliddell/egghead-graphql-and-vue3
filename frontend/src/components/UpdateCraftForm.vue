@@ -31,10 +31,10 @@ const updateFields = reactive({ ...props.craft })
 </template>
 
 <style scoped>
-form {
-  padding: 1rem;
-}
 label {
-  display: block;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  margin-bottom: 0.5rem;
 }
 </style>

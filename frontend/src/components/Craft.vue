@@ -29,7 +29,7 @@ const showModal = ref(false);
 </script>
 
 <template>
-  The craft id is {{ $route.params.id }}.
+  <h2>{{craft.name}} craft</h2>
   <br />
   <button @click="showModal = !showModal">
     Update
@@ -57,7 +57,7 @@ const showModal = ref(false);
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 100%;
     padding: 1rem;
     overflow: auto;
