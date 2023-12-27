@@ -1,8 +1,8 @@
 <script setup>
 import { computed } from 'vue';
-import { useQuery, useResult } from '@vue/apollo-composable';
+import { useQuery } from '@vue/apollo-composable';
 import { gql } from '@apollo/client/core';
-import Craft from './Craft.vue'
+import Craft from './CraftListItem.vue'
 
 const craftQuery = gql`
   query {

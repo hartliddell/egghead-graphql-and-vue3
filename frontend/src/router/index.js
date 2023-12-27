@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import CraftList from "../components/CraftList.vue";
 import About from "../components/About.vue";
+import CraftView from "../components/CraftView.vue";
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "/about",
     component: About,
+  },
+  {
+    path: "/crafts/:id",
+    component: CraftView,
   }
 ];
 
