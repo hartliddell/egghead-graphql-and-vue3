@@ -1,15 +1,54 @@
 <script setup>
 import { reactive } from 'vue';
+import { gql } from '@apollo/client/core';
+import { useMutation } from '@vue/apollo-composable';
 const props = defineProps({
   craft: Object
 });
 
 const emit = defineEmits(['close']);
 const updateFields = reactive({ ...props.craft })
+const updateMutation = gql`
+  mutation (
+    $name: String,
+    $type: String,
+    $brand: String,
+    $price: String,
+    $age: Int,
+    $id: ID!
+  ) {
+    updateCraft (
+      name: $name,
+      brand: $brand,
+      price: $price,
+      age: $age,
+      id: $id,
+      type: $type,
+    ) {
+      id
+    }
+  }
+`;
+
+const { mutation: updateCraft } = useMutation(updateMutation, () => ({
+  variables: {
+    name: updateFields.name,
+    type: updateFields.type,
+    brand: updateFields.brand,
+    price: updateFields.price,
+    age: Number(updateFields.age),
+    id: props.craft.id,
+  },
+}));
+
+const handleSubmit = async () => {
+  await updateCraft();
+  emit('close');
+};
 </script>
 
 <template>
-  <form class="formFields">
+  <form class="formFields" @submit.prevent>
     <label for="craftName">Name of craft:
       <input id="craftName" v-model="updateFields.name" />
     </label>
@@ -27,7 +66,7 @@ const updateFields = reactive({ ...props.craft })
     </label>
   </form>
   <button @click="emit('close')">Cancel</button>
-  <button>Update</button>
+  <button @click="handleSubmit()">Update</button>
 </template>
 
 <style scoped>
