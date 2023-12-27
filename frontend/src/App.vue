@@ -14,4 +14,10 @@
 
 <style scoped>
 
+#nav {
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+}
+
 </style>
