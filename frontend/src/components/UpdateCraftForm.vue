@@ -37,7 +37,7 @@ const { mutate: updateCraft } = useMutation(updateMutation, () => ({
     brand: updateFields.brand,
     price: updateFields.price,
     age: Number(updateFields.age),
-    id: props.craft.id,
+    id: updateFields.id,
   },
 }));
 

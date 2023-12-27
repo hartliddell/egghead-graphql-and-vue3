@@ -8,7 +8,8 @@ import { useRoute } from 'vue-router';
 const craftQuery = gql`
   query ($id: ID) {
     Craft(id: $id) {
-      name
+      id,
+      name,
       type,
       brand,
       price,
@@ -29,19 +30,21 @@ const showModal = ref(false);
 </script>
 
 <template>
-  <h2>{{craft.name}} made by {{ craft.brand}}</h2>
-  <p>This craft is {{ craft.age }} months old and costs {{
-  Number(craft.price).toLocaleString(undefined, {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-  }) }}</p>
-  <button @click="showModal = !showModal">
-    Update
-  </button>
-  <div v-if="showModal && craft" class="modal">
-    <div class="modalInner">
-      <UpdateCraftForm :craft="craft" @close="showModal = !showModal" />
+  <div v-if="craft">
+    <h2>{{craft.name}} made by {{ craft.brand}}</h2>
+    <p>This craft is {{ craft.age }} months old and costs {{
+    Number(craft.price).toLocaleString(undefined, {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+    }) }}</p>
+    <button @click="showModal = !showModal">
+      Update
+    </button>
+    <div v-if="showModal && craft" class="modal">
+      <div class="modalInner">
+        <UpdateCraftForm :craft="craft" @close="showModal = !showModal" />
+      </div>
     </div>
   </div>
 </template>
