@@ -30,7 +30,7 @@ const updateMutation = gql`
   }
 `;
 
-const { mutation: updateCraft } = useMutation(updateMutation, () => ({
+const { mutate: updateCraft } = useMutation(updateMutation, () => ({
   variables: {
     name: updateFields.name,
     type: updateFields.type,
