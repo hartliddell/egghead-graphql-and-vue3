@@ -1,30 +1,16 @@
 <script setup>
-import { gql } from '@apollo/client/core';
-import { ref } from 'vue';
-import { useQuery } from '@vue/apollo-composable';
-import { useRoute } from 'vue-router';
+defineProps({
+  craft: Object
+});
 
-const craftQuery = gql`
-  query ($id: ID) {
-    Craft(id: $id) {
-      name
-      type,
-      brand,
-      price,
-      age,
-      owner {
-        id,
-        firstName,
-        lastName,
-      }
-    }
-  }
-`;
-
+const emit = defineEmits(['close']);
 </script>
 
 <template>
-Hello world
+  <button @click="emit('close')">Cancel</button>
+  <button>Update</button>
+  <br />
+  <div>{{ JSON.stringify(craft) }}</div>
 </template>
 
 <style scoped>

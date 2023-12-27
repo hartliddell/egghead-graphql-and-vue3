@@ -1,7 +1,7 @@
 <script setup>
 import UpdateCraftForm from './UpdateCraftForm.vue';
 import { gql } from '@apollo/client/core';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
 import { useRoute } from 'vue-router';
 
@@ -24,21 +24,19 @@ const craftQuery = gql`
 
 const route = useRoute();
 const { result } = useQuery(craftQuery, { id: route.params.id });
-const data = () => result.value?.Craft;
+const craft = computed(() => result.value?.Craft);
 const showModal = ref(false);
 </script>
 
 <template>
   The craft id is {{ $route.params.id }}.
-  <div v-if="data">
-    {{ JSON.stringify(data) }}
-  </div>
+  <br />
   <button @click="showModal = !showModal">
     Update
   </button>
-  <div v-if="showModal" class="modal">
+  <div v-if="showModal && craft" class="modal">
     <div class="modalInner">
-      <UpdateCraftForm :craft="craft" />
+      <UpdateCraftForm :craft="craft" @close="showModal = !showModal" />
     </div>
   </div>
 </template>
