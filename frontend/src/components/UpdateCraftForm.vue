@@ -6,7 +6,7 @@ const props = defineProps({
   craft: Object
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close','updated']);
 const updateFields = reactive({ ...props.craft })
 const updateMutation = gql`
   mutation (
@@ -43,7 +43,7 @@ const { mutate: updateCraft } = useMutation(updateMutation, () => ({
 
 const handleSubmit = async () => {
   await updateCraft();
-  emit('close');
+  emit('updated');
 };
 </script>
 

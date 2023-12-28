@@ -24,9 +24,15 @@ const craftQuery = gql`
 `;
 
 const route = useRoute();
-const { result } = useQuery(craftQuery, { id: route.params.id });
+const { result, refetch } = useQuery(craftQuery, { id: route.params.id });
 const craft = computed(() => result.value?.Craft);
 const showModal = ref(false);
+
+const handleRefresh = () => {
+  showModal.value = false;
+  refetch();
+};
+
 </script>
 
 <template>
@@ -43,7 +49,7 @@ const showModal = ref(false);
     </button>
     <div v-if="showModal && craft" class="modal">
       <div class="modalInner">
-        <UpdateCraftForm :craft="craft" @close="showModal = !showModal" />
+        <UpdateCraftForm :craft="craft" @close="showModal = !showModal" @updated="handleRefresh()" />
       </div>
     </div>
   </div>
