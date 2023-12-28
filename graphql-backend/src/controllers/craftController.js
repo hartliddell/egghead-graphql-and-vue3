@@ -51,6 +51,7 @@ exports.updateCraft = async (request, reply) => {
     const id = request.params ? request.params.id : request.id;
     const fields = request.body ? request.body : request;
     const update = await Craft.findByIdAndUpdate(id, fields, { new: true });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     return update;
   } catch (error) {
     throw boom.boomify(error);
