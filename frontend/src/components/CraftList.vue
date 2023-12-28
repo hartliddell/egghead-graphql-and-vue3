@@ -26,8 +26,18 @@ const craftsQuery = gql`
 const { result, fetchMore } = useQuery(craftsQuery, () => ({ offset: 0 }));
 const data = computed(() => result.value?.Crafts.edges ?? []);
 
-const loadMore = () => {
-  fetchMore({
+const scrollToBottom = () => {
+  const documentHeight = document.documentElement.scrollHeight;
+
+  // Scroll to the bottom
+  window.scrollTo({
+    top: documentHeight,
+    behavior: 'smooth',
+  });
+};
+
+const loadMore = async () => {
+  await fetchMore({
     variables: {
       offset: data.value.length
     },
@@ -44,6 +54,8 @@ const loadMore = () => {
       };
     }
   });
+
+  scrollToBottom();
 };
 
 </script>
