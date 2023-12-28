@@ -4,9 +4,9 @@ import { useQuery } from '@vue/apollo-composable';
 import { gql } from '@apollo/client/core';
 import Craft from './CraftListItem.vue'
 
-const craftQuery = gql`
-  query {
-    Crafts {
+const craftsQuery = gql`
+  query ($offset: Int) {
+    Crafts (offset: $offset) {
       edges {
         name
         id,
@@ -23,8 +23,32 @@ const craftQuery = gql`
   }
 `;
 
-const { result } = useQuery(craftQuery);
+const { result, fetchMore } = useQuery(craftsQuery, () => ({ offset: 0 }));
 const data = computed(() => result.value?.Crafts.edges ?? []);
+
+const loadMore = () => {
+  fetchMore({
+    variables: {
+      offset: data.value.length
+    },
+    updateQuery: (prev, { fetchMoreResult: next }) => {
+      console.log('prev', prev);
+      if (!next) return prev;
+      const foo = {
+        Crafts: {
+          __typename: "CraftsResult",
+          edges: [
+            ...prev.Crafts.edges,
+            ...next.Crafts.edges
+          ]
+        }
+      };
+
+      console.log('...', foo);
+      return foo;
+    }
+  });
+};
 
 </script>
 
@@ -34,6 +58,7 @@ const data = computed(() => result.value?.Crafts.edges ?? []);
     <ul>
       <Craft v-for="craft in data" :key="craft.id" :craft="craft" />
     </ul>
+    <button @click="loadMore()">Load more</button>
   </div>
 </template>
 
