@@ -32,9 +32,8 @@ const loadMore = () => {
       offset: data.value.length
     },
     updateQuery: (prev, { fetchMoreResult: next }) => {
-      console.log('prev', prev);
       if (!next) return prev;
-      const foo = {
+      return {
         Crafts: {
           __typename: "CraftsResult",
           edges: [
@@ -43,9 +42,6 @@ const loadMore = () => {
           ]
         }
       };
-
-      console.log('...', foo);
-      return foo;
     }
   });
 };
