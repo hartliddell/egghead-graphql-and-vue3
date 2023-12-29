@@ -53,8 +53,8 @@ const handleSubmit = async () => {
       >Name of craft:
       <input id="craftName" v-model="updateFields.name" />
     </label>
-    <label for="craftType"
-      >Type of craft:
+    <label for="craftType">
+      Type of craft:
       <input id="craftType" v-model="updateFields.type" />
     </label>
     <label for="craftBrand"
