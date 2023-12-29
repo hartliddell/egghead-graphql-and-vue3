@@ -1,6 +1,7 @@
+//.eslintrc.js
 module.exports = {
   env: {
-    node: true,
+    node: false,
   },
   extends: [
     'eslint:recommended',

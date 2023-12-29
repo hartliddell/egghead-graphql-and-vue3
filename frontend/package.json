@@ -2,12 +2,11 @@
   "name": "frontend.ts",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "build": "vue-tsc && vite build",
     "dev": "vite",
     "format": "prettier ./src  --write",
-    "lint": "eslint --ext .js,.ts,.vue --fix src",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "preview": "vite preview"
   },
   "dependencies": {
