@@ -49,24 +49,24 @@ const handleSubmit = async () => {
 
 <template>
   <form class="formFields" @submit.prevent>
-    <label for="craftName"
-      >Name of craft:
+    <label for="craftName">
+      Name of craft:
       <input id="craftName" v-model="updateFields.name" />
     </label>
     <label for="craftType">
       Type of craft:
       <input id="craftType" v-model="updateFields.type" />
     </label>
-    <label for="craftBrand"
-      >Brand of craft:
+    <label for="craftBrand">
+      Brand of craft:
       <input id="craftBrand" v-model="updateFields.brand" />
     </label>
-    <label for="craftAge"
-      >Age of craft:
+    <label for="craftAge">
+      Age of craft:
       <input id="craftAge" v-model="updateFields.age" />
     </label>
-    <label for="craftPrice"
-      >Price of craft:
+    <label for="craftPrice">
+      Price of craft:
       <input id="craftPrice" v-model="updateFields.price" />
     </label>
   </form>
