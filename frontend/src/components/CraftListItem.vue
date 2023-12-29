@@ -15,13 +15,13 @@ defineProps({
         is owned by {{ craft.owner.firstName }} {{ craft.owner.lastName }}
       </span>
       <span v-else>
-        is available to buy and costs {{
-          Number(craft.price)
-            .toLocaleString("us-EN", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 0,
-            })
+        is available to buy and costs
+        {{
+          Number(craft.price).toLocaleString("us-EN", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0,
+          })
         }}
       </span>
     </router-link>
@@ -29,24 +29,23 @@ defineProps({
 </template>
 
 <style scoped>
-  .owned {
-    background-color: rgba(20, 20, 20, 0.3);
+.owned {
+  background-color: rgba(20, 20, 20, 0.3);
+}
+.forSale {
+  font-weight: 800;
+  a {
+    font-weight: inherit;
   }
-  .forSale {
-    font-weight: 800;
-    a {
-      font-weight: inherit;
-    }
-  }
+}
 
-  li {
-    border: solid 1px black;
-    border-radius: 4px;
-    padding: 8px;
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+li {
+  border: solid 1px black;
+  border-radius: 4px;
+  padding: 8px;
+  a {
+    color: inherit;
+    text-decoration: none;
   }
-
+}
 </style>

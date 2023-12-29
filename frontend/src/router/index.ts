@@ -16,7 +16,7 @@ const routes = [
   {
     path: "/crafts/:id",
     component: Craft,
-  }
+  },
 ];
 
 const router = createRouter({

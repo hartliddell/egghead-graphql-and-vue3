@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useQuery } from '@vue/apollo-composable';
-import { gql } from '@apollo/client/core';
-import Craft from './CraftListItem.vue'
+import { computed } from "vue";
+import { useQuery } from "@vue/apollo-composable";
+import { gql } from "@apollo/client/core";
+import Craft from "./CraftListItem.vue";
 
 const craftsQuery = gql`
   query ($offset: Int) {
-    Crafts (offset: $offset) {
+    Crafts(offset: $offset) {
       edges {
         name
-        id,
-        type,
-        price,
-        age,
+        id
+        type
+        price
+        age
         owner {
-          id,
-          firstName,
-          lastName,
+          id
+          firstName
+          lastName
         }
       }
     }
@@ -32,32 +32,28 @@ const scrollToBottom = () => {
   // Scroll to the bottom
   window.scrollTo({
     top: documentHeight,
-    behavior: 'smooth',
+    behavior: "smooth",
   });
 };
 
 const loadMore = async () => {
   await fetchMore({
     variables: {
-      offset: data.value.length
+      offset: data.value.length,
     },
     updateQuery: (prev, { fetchMoreResult: next }) => {
       if (!next) return prev;
       return {
         Crafts: {
           __typename: "CraftsResult",
-          edges: [
-            ...prev.Crafts.edges,
-            ...next.Crafts.edges
-          ]
-        }
+          edges: [...prev.Crafts.edges, ...next.Crafts.edges],
+        },
       };
-    }
+    },
   });
 
   scrollToBottom();
 };
-
 </script>
 
 <template>
@@ -82,6 +78,4 @@ ul {
 li {
   list-style: none;
 }
-
 </style>
-

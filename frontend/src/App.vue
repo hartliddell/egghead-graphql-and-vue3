@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div id="nav">
@@ -13,13 +12,9 @@
 </template>
 
 <style scoped>
-
 #nav {
   justify-content: center;
   display: flex;
   gap: 1rem;
 }
-
 </style>
-
-
